@@ -2,9 +2,105 @@
  # SETTINGS
 /*---------------------------------------*/
 
+
 :root {
-  /* CSS variables here */
+  color-scheme: light dark;   
+
+  /* Colors */
+  --blue-10: hsl(216 100% 97%);
+  --blue-100: hsl(216 100% 10%);
+  --blue-20: hsl(216 100% 90%);
+  --blue-30: hsl(216 100% 80%);
+  --blue-40: hsl(216 100% 70%);
+  --blue-50: hsl(216 100% 60%);
+  --blue-50-alpha-30: hsl(216 100% 60% / 0.3);
+  --blue-50-alpha-50: hsl(216 100% 60% / 0.5);
+  --blue-60: hsl(216 100% 50%);
+  --blue-70: hsl(216 100% 40%);
+  --blue-80: hsl(216 100% 30%);
+  --blue-90: hsl(216 100% 20%);
+  --gray-10: hsl(216 24% 96%);
+  --gray-100: hsl(213 13% 13%);
+  --gray-20: hsl(216 11% 90%);
+  --gray-30: hsl(215 5% 77%);
+  --gray-40: hsl(215 4% 68%);
+  --gray-50: hsl(214 3% 59%);
+  --gray-60: hsl(214 3% 50%);
+  --gray-70: hsl(214 4% 41%);
+  --gray-80: hsl(214 5% 32%);
+  --gray-90: hsl(214 8% 22%);
+  --red-50: hsl(350 88% 57%);
+  --red-50-a-30: hsl(350 88% 57% / 0.3);
+  --red-50-a-50: hsl(350 88% 57% / 0.5);
+
+/* Theme */
+  /* background */
+--background-layer-1: light-dark(var(--gray-10),var(--gray-100));
+--background-layer-2: light-dark(hsl(0 0 100%),var(--gray-90));
+--background-layer-3: light-dark(hsl(0 0 100%), var(--gray-100));
+--background-layer-4: var(--gray-20),var(--gray-100);
+--background-brand: light-dark( var(--blue-50), var(--blue-50));
+--background-brand-light: light-dark(var(--blue-40), var(--blue-40));
+--background-brand-dark: light-dark(var(--blue-60), var(--blue-60));
+
+  /* text colors */
+--color-brand: var(--blue-50);
+--color-brand-dark: var(--blue-60);
+--color-brand-light: var(--blue-40);
+
+  /* border colors */
+--border-color-brand: light-dark((--blue-50),var(--blue-50));
+--border-color-error: light-dark((--red-50),var(--red-50));
+
+
+
+--border-color-hard: var(--gray-30);
+--border-color-normal: var(--gray-20);
+--border-color-soft: var(--gray-10);
+  --color-error: var(--red-50);
+  --color-light: var(--gray-50);
+  --color-normal: var(--gray-100);
+  --color-soft: var(--gray-70);
+  --logo-circle-1: var(--gray-100);
+  --logo-circle-2: var(--background-brand);
+  --logo-text: var(--gray-100);
+  --outline-color-default: var(--blue-50-alpha-30);
+  --outline-color-error: var(--red-50-a-30);
+  
+/* Radii */
+
+  --radius-s: 0.1875rem;
+  --radius: 0.375rem;
+  --radius-l: 0.75rem;
+  
+/* whitespace */
+
+  --space-1: 0.125rem;
+  --space-2: 0.25rem;
+  --baseline: 0.5rem;
+  --space-3: var(--baseline);
+  --space-4: 0.75rem;
+  --space-5: 1rem;
+  --space-6: 1.5rem;
+  --space-7: 2rem;
+  --space-8: 2.5rem;
+  --space-9: 3rem;
+  --space-10: 4rem;
+
+/* Type */
+
+  --type-scale-1: 0.75rem;
+  --type-scale-2: 0.875rem;
+  --type-scale-3: 1rem;
+  --type-scale-4: 1.125rem;
+  --type-scale-5: 1.25rem;
+  --type-scale-6: 1.5rem;
+  --type-scale-7: 1.75rem;
+  --type-scale-8: 2rem;
+  --type-scale-9: 2.25rem;
+  --type-scale-10: 2.625rem;
 }
+
 
 /*---------------------------------------/*
  # GENERIC
@@ -49,11 +145,6 @@ html {
     Customize the background color and color to match your design.
 */
 
-::selection {
-  background: hotpink;
-  color: white;
-}
-
 /*---------------------------------------/*
  # OBJECTS
 /*---------------------------------------*/
@@ -73,12 +164,155 @@ html {
 
 /*------------------------------------*\
   #COMPONENTS
-\*------------------------------------*/
+/*---------------------------------------/*
+ # LOGIN COMPONENT (BEM)
+/*---------------------------------------*/
+
+.login {
+  background: var(--background-layer-1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-9) var(--space-5);
+}
+
+.login__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-9, 3rem);
+  flex-shrink: 0;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;  
+  border-radius: var(--radius, 0.375rem);
+  background: var(--background-layer-2, #35383D);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+}
+
+.login__title {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: var(--type-scale-4);
+  line-height: var(--space-6);
+  color: var(--color-normal);
+  align-self: center;
+}
+
+.login__fields {
+  display: flex;
+  padding: var(--space-9, 3rem);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-9, 3rem);
+  align-self: stretch;
+}
+
+.login__field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3, 0.5rem);
+  align-self: stretch;
+  position: relative;
+}
+
+.login__label {
+  font-family: "Inter", sans-serif;
+  font-size: var(--type-scale-2);
+  color: var(--color-soft);
+  margin-bottom: var(--space-3);
+}
+
+.login__input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  align-self: stretch;
+}
+
+.login__input {
+  width: 100%;
+  padding: var(--space-5, 1rem) var(--space-9, 3rem) var(--space-5, 1rem) var(--space-5, 1rem);
+  gap: 1.5rem;
+  background: var(--background-layer-3);
+  font-size: var(--type-scale-2);
+  color: var(--color-light);
+  border-radius: var(--radius-s, 0.1875rem);
+  border: 1px solid var(--border-color-normal, #E2E5E8);
+  background: var(--background-layer-3, #FFF);
+}
+
+.login__icon {
+  position: absolute;
+  right: var(--space-5);
+  align-self: center;
+  justify-self: center;
+}
+
+.login__checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  justify-content: center;
+}
+
+.login__checkbox-label {
+  font-family: "Inter", sans-serif;
+  font-size: var(--type-scale-2);
+  color: var(--color-soft);
+}
+
+.login__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  width: 100%;
+}
+
+.login__button {
+  padding: var(--space-4, 0.75rem) 1.5rem;
+  background: var(--background-brand);
+  border: none;
+  border-radius: var(--radius-s);
+  box-shadow: 0px 0px 0px 2px var(--outline-color-default);
+  cursor: pointer;
+  color: #FFF;
+}
+
+.login__forgot {
+  text-align: center;
+  color: var(--color-light);
+  font-size: var(--type-scale-2);
+  text-decoration: underline;
+}
+
+.login__footer {
+  border-top: 1px solid var(--border-color-normal);
+  padding: var(--space-6) var(--space-9);
+  text-align: center;
+}
+
+.login__footer-text {
+  color: var(--color-light);
+  font-size: var(--type-scale-2);
+  font-family: "Inter", sans-serif;
+}
+
+/*------------------------------------*/
 /*
     Component: Component name
     ---
     Component description
+
+    
 */
+
 
 /*---------------------------------------/*
  # UTILITIES

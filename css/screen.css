@@ -6,7 +6,7 @@
 :root {
   color-scheme: light dark;   
 
-  /* Colors */
+/* Colors */
   --blue-10: hsl(216 100% 97%);
   --blue-100: hsl(216 100% 10%);
   --blue-20: hsl(216 100% 90%);
@@ -38,34 +38,31 @@
 --background-layer-1: light-dark(var(--gray-10),var(--gray-100));
 --background-layer-2: light-dark(hsl(0 0 100%),var(--gray-90));
 --background-layer-3: light-dark(hsl(0 0 100%), var(--gray-100));
---background-layer-4: var(--gray-20),var(--gray-100);
+--background-layer-4: light-dark(var(--gray-20),var(--gray-100));
 --background-brand: light-dark( var(--blue-50), var(--blue-50));
 --background-brand-light: light-dark(var(--blue-40), var(--blue-40));
 --background-brand-dark: light-dark(var(--blue-60), var(--blue-60));
 
-  /* text colors */
---color-brand: var(--blue-50);
---color-brand-dark: var(--blue-60);
---color-brand-light: var(--blue-40);
-
   /* border colors */
---border-color-brand: light-dark((--blue-50),var(--blue-50));
---border-color-error: light-dark((--red-50),var(--red-50));
+--border-color-normal: light-dark(var(--gray-20), var(--gray-100));
+--border-color-hard: light-dark(var(--gray-30), var(--gray-100));
+--border-color-soft: light-dark(var(--gray-10), var(--gray-80));
+--border-color-brand: light-dark(var(--blue-50),var(--blue-50));
+--border-color-error: light-dark(var(--red-50),var(--red-50));
 
-
-
---border-color-hard: var(--gray-30);
---border-color-normal: var(--gray-20);
---border-color-soft: var(--gray-10);
-  --color-error: var(--red-50);
-  --color-light: var(--gray-50);
-  --color-normal: var(--gray-100);
-  --color-soft: var(--gray-70);
-  --logo-circle-1: var(--gray-100);
-  --logo-circle-2: var(--background-brand);
-  --logo-text: var(--gray-100);
-  --outline-color-default: var(--blue-50-alpha-30);
-  --outline-color-error: var(--red-50-a-30);
+  /* color */
+  
+--color-normal: light-dark(var(--gray-100), var(--gray-10));
+--color-soft: light-dark(var(--gray-70), var(--gray-30));
+--color-light: light-dark(var(--gray-50), var(--gray-50));
+--color-brand: light-dark(var(--blue-50), var(--blue-50));
+--color-brand-light: light-dark(var(--blue-40), var(--blue-40));
+--color-brand-dark: light-dark(var(--blue-60), var(--blue-60));
+--color-error: light-dark(var(--red-50), var(--red-50));
+  
+  /* outline color*/
+--outline-color-default: light-dark(var(--blue-50-alpha-30), var(--blue-50-alpha-50));
+--outline-color-error: light-dark(var(--red-50-a-30), var(--red-50-a-50));
   
 /* Radii */
 
@@ -134,7 +131,7 @@ img {
 html {
   font-size: 100%;
   line-height: 1.5;
-  font-family: "Helvetica Neue", Helvetica, arial, sans-serif;
+  font-family: "Inter","Helvetica Neue", Helvetica, arial, sans-serif;
   scroll-behavior: smooth;
   /* anti aliasing */
   -webkit-font-smoothing: antialiased;
@@ -144,6 +141,14 @@ html {
 /*
     Customize the background color and color to match your design.
 */
+
+a {
+  color: var(--color-brand);
+}
+
+a:hover {
+  color: var(--color-brand-light);
+}
 
 /*---------------------------------------/*
  # OBJECTS
@@ -160,6 +165,23 @@ html {
   margin-right: auto;
   width: 100%;
   max-width: 87.5rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-9, 3rem);
+  flex-shrink: 0;
+}
+
+.o-hide-accessible {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 /*------------------------------------*\
@@ -182,6 +204,25 @@ html {
   align-items: center;
   gap: var(--space-9, 3rem);
   flex-shrink: 0;
+}
+
+.login__logo {
+    /* logo */
+  --logo__path--circle-1: light-dark(var(--gray-100), #fff);
+  --logo__path--circle-2: light-dark(var(--background-brand), #fff);
+  --logo__path--text: light-dark(var(--gray-100), #fff);
+}
+
+.logo__circle1 {
+  fill: var(--logo__path--circle-1);
+}
+
+.logo__circle2 {
+  fill: var(--logo__path--circle-2);
+}
+
+.logo__text {
+  fill: var(--logo__path--text);
 }
 
 .login__form {
@@ -219,6 +260,11 @@ html {
   gap: var(--space-3, 0.5rem);
   align-self: stretch;
   position: relative;
+}
+
+.login__input:focus-visible{
+  box-shadow: 0 0 0 2px var(--outline-color-default, rgba(51, 133, 255, 0.50));
+  outline: none;
 }
 
 .login__label {
@@ -280,14 +326,22 @@ html {
   background: var(--background-brand);
   border: none;
   border-radius: var(--radius-s);
-  box-shadow: 0px 0px 0px 2px var(--outline-color-default);
   cursor: pointer;
   color: #FFF;
 }
 
+.login__button:hover {
+  background: var(--background-brand-light);
+}
+.login__button:focus-visible {
+  /* Outline */
+  box-shadow: 0 0 0 2px var(--outline-color-default, rgba(51, 133, 255, 0.50));
+  outline: none;
+}
+
 .login__forgot {
   text-align: center;
-  color: var(--color-light);
+
   font-size: var(--type-scale-2);
   text-decoration: underline;
 }
@@ -304,6 +358,36 @@ html {
   font-family: "Inter", sans-serif;
 }
 
+.login__checkbox{
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1rem;
+  height: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color-normal);
+  background-color: var(--background-layer-3);
+  border-radius: var(--radius-s, 0.1875rem);
+  filter: drop-shadow(0 0 0 var(--outline-color-default, rgba(51, 133, 255, 0.30)));
+  position: relative;
+}
+
+.login__checkbox:checked::before {
+  scale: 1;
+}
+
+.login__checkbox:before {
+  content: "";
+  position: absolute;
+  width: 0.625rem;
+  height: 0.5rem;
+  clip-path: path('M8.26269 0.322235C8.63587 -0.0848693 9.26866 -0.112438 9.67578 0.260712C10.0829 0.63389 10.1105 1.26668 9.7373 1.6738L4.2373 7.6738C4.04237 7.88645 3.76495 8.00478 3.47656 7.99802C3.18815 7.99121 2.91615 7.86024 2.73144 7.63864L0.231442 4.63864C-0.122095 4.2144 -0.0648176 3.58304 0.359372 3.22946C0.783617 2.87592 1.41497 2.9332 1.76855 3.35739L3.53613 5.47849L8.26269 0.322235Z');
+  scale: 0;
+  background-color: var(--color-brand);
+  /* transition: scale 0.2s ease; */
+}
+  
 /*------------------------------------*/
 /*
     Component: Component name
